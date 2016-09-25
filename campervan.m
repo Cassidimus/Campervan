@@ -17,8 +17,8 @@ sf='(C1+P1)-(T1+H1)'; %doesn't include table of heat source
 ns = char('P1','C1','T1','H1')';
 g = decsg(gd,sf,ns); %creates geometry
 geometryFromEdges(pdem,g);
-figure 
-pdegplot(pdem,'edgeLabels','on','subdomainLabels','on')
+figure %figure of geometry
+pdegplot(pdem,'edgeLabels','on','subdomainLabels','on') 
 axis equal
 
 applyBoundaryCondition(pdem,'Edge',[4,7,6,5,9,10],'u',5);  
