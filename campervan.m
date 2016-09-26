@@ -1,4 +1,6 @@
+%to solve pde with a time derivative
 clear
+close all
 
 numberOfPDE = 1;
 pdem = createpde(numberOfPDE);
@@ -21,21 +23,37 @@ figure %figure of geometry
 pdegplot(pdem,'edgeLabels','on','subdomainLabels','on') 
 axis equal
 
-applyBoundaryCondition(pdem,'Edge',[4,7,6,5,9,10],'u',5);  
-applyBoundaryCondition(pdem,'Edge',[16,15,13,14],'u',400); 
-specifyCoefficients(pdem,'m',0,'d',1,'c',1,'a',0,'f',0,'face',1);
-specifyCoefficients(pdem,'m',0,'d',1,'c',10,'a',0,'f',0,'face',2);
-% specifyCoefficients(pdem,'m',0,'d',1,'c',40,'a',0,'f',0,'face',[1,5:8]);
-setInitialConditions(pdem,20); 
+applyBoundaryCondition(pdem,'Edge',[4,7,6,5,9,10],'u',5);  % outside temp
+applyBoundaryCondition(pdem,'Edge',[16,15,13,14],'u',400); %heat source temp
+specifyCoefficients(pdem,'m',0,'d',1,'c',1,'a',0,'f',0,'face',1); %set conductivity of air
+specifyCoefficients(pdem,'m',0,'d',1,'c',10,'a',0,'f',0,'face',2); %set conductivity of pot
+setInitialConditions(pdem,20); %initial room temp
 msh = generateMesh(pdem,'Hgrad',1.05);
 figure
 pdemesh(pdem);
 axis equal 
 nframes = 200;
-tlist = linspace(0,10,nframes);
+tlist = linspace(0,0.1,nframes);
 pdem.SolverOptions.ReportStatistics ='on'; 
 result = solvepde(pdem,tlist);
 u1 = result.NodalSolution;
+
+%points to follow temp change at - in pot, handle, standing pos for person
+xx = [4.25,3.7,3.25];
+yy = [0.7,0.88,1.25];
+uintrp = interpolateSolution(result,xx,yy,1:length(tlist));
+
+figure
+for j= 1:3
+    hold on
+plot(tlist,uintrp(j,:))
+hold off
+end
+title('Change of T over time at three points')
+xlabel('time')
+ylabel('temperature')
+legend('pot','handle','person')
+
 figure 
 for j = 1:nframes, pdeplot(pdem,'xydata',u1(:,j),'colormap','hot');
 hold on 
@@ -43,4 +61,4 @@ pdegplot(pdem);
 hold off 
 Mv(j) = getframe;
 end
-movie(Mv,5);
+movie(Mv,1);
