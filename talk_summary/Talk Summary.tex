@@ -1,0 +1,44 @@
+\documentclass[12pt,a4paper]{article} 
+\usepackage{amsmath}
+\usepackage{scrextend}
+
+\begin{document}
+	\pagenumbering{gobble}
+
+\begin{addmargin}[-6em]{-6em}	
+	\section*{Talk Summary from MIGSAA Annual Colloquium}
+	\subsection*{Professor Dan Crisan (ICL) - Integration: Past, Present and Future}	
+	\subsubsection*{History of Integration}
+	\vspace{-3mm}
+	\paragraph{} Two thousand years ago, Archimedes of Syracuse, found formulas for the surface areas and volumes of solids such as the sphere, cone, paraboloid. He proved the ratio of 2:3 as being that of the volume of a sphere to that of a cylinder.	Cavalieri introduced his method of indivisibles and described curves as being an infinite number of indivisibles and used them to find a formula for areas under curves.
+	
+	Later Wallis showed vigorously how to find the area under the curve $y=kx^n$, managing to generalize Cavalieri's work. Fermat was then able to divide the area under the curve into an infinite number of rectangles, accomplishing much with functions. His method wasn't yet vigorous however as he used the limit as the number of rectangles approached infinity when there was not yet a concept of a limit. He also missed the connection with differentiation which was then found by Newton and Leibniz independently and brought about Calculus.	Cauchy then lifted Calculus into analysis and first introduced the integral of a continuous function.
+	
+	Riemann gave integrable functions a vigorous definition and showed that there exist functions that aren't continuous and yet are integrable. He also found that there are bounded derivatives that are not Riemann integrable. There came to be a need for a replacement for Riemann integration to account for these anomalies. This method was grounded in measure theory and was found by Lebesgue.
+	
+	Young made proofs that led to integration with respect to Brownian motion, characterizing the 'roughness' of paths. This was then developed by It\^{o} leading to a need of pathwise integration. Following this Lyons found a way to integrate rough paths known as Algorithmic Indefinite Integration.
+	
+	The Feynman-Kac formula below connects the microscopic, stochastic Brownian motion to the macroscopic side of things described using things like Navier Stokes.
+	\begin{equation*}
+	u(t,x) \ = \ E\left[\wedge_{t,x}\left(W\right)\right] \ = \ \int_{\omega\in C\left(\left[0,\infty\right),\mathit{R}^d\right)}
+	\end{equation*}
+	
+	\vspace{-5mm}
+	\subsubsection*{Applications}
+	\vspace{-3mm}
+	\paragraph{}Integration is used for predicting the location of a moving sattelite from the ground where noise in signals prevent perfect measurements. The probability distribution of where the signal from the sattelite is coming from is integrated to get a pointwise approximate position of the sattelite.
+	
+	In numerical weather prediction we cannot exactly model the evolution of the atmosphere so a 4000-dimensional model is used on $\mathit{T}^2$ to look at the evolution of points. This process uses multi-chain Monte Carlo methods.
+	\vspace{-3mm}
+	\subsubsection*{Quo Vadis - Or what we can do to take it further}
+	\vspace{-3mm}
+	\paragraph{}
+	\begin{itemize}
+		\vspace{-3mm}
+		\item Theoretical integration - finding if PDE problems are well posed, Navier Stokes, Randomness in dynamical systems, Pompeiu problem and high dimensional integration
+		\vspace{-3mm}
+		\item Numerical integration - Weather prediction, climate change has few mathematicians working on it, internet and big data.
+	\end{itemize}
+\end{addmargin}	
+\end{document}
+

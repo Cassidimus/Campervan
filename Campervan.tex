@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}  % [12pt] option for the benefit of aging markers
+\usepackage{amssymb}           % amssymb package contains more mathematical symbols
+\usepackage{graphicx}          % graphicx package enables you to paste graphics into your document
+\usepackage{amsmath}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%    Page size commands.  Don't worry about these
+%
+\setlength{\textheight}{220mm}
+\setlength{\topmargin}{-10mm}
+\setlength{\textwidth}{150mm}
+\setlength{\oddsidemargin}{0mm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%    Definitions of environments for theorems etc.
+%
+\newtheorem{theorem}{Theorem}[section]          % Theorems numbered within sections - eg Theorem 2.1 in Section 2.
+\newtheorem{corollary}[theorem]{Corollary}      % Corollaries etc. will be counted as Theorems for numbering
+\newtheorem{lemma}[theorem]{Lemma}              % eg Lemma 3.1, ... Theorem 3.2, ... Corollary 3.3.
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example} 
+
+%--------------------------------------------------------%%%%%%%%%%%%%%%%%
+%
+%        Preamble material specific to your essay
+%
+\title{MATLAB PDE Toolbox Assignment}
+\author{Cassie Hinkson\\
+Boiling Water in a Campervan}
+
+\begin{document}
+\maketitle
+
+\section{The Scenario}\label{s:intro}
+%
+\paragraph{} Imagine there is a person in a campervan who wishes to make a cup of tea without going outside. They have a stove with an open flame on top of a table, which they are using to boil a pot filled with water. We wish to model the change of temperature throughout the room during this process and see if these temperatures are safe for the person inside. We will do this using hyperbolic Partial Differential Equations (PDEs) solved using MATLAB's PDE Toolbox following the steps introduced in Thursday's Computer Tools and Skills lecture. 
+
+\subsection{The Geometry}
+\paragraph{} We start by modelling the shape of the campervan and its contents by creating a geometry. The campervan and table are represented by the rectangles with coordinates $\{(1,0), (5,0), (1,2.5), (5,2.5)\}, \{(4,0), (5,0), (4,0.5), (5,0.5)\}$  respectively. The pot is modelled with the six sided polygon with coordinates $\{(4.1,0.65),(4.5,0.65),\\(4.5,0.9),(3.6,0.9),(3.6,0.87),(4.1,0.87)\}$ and the flame on the table by the ellipse centred at $(4.3;0.575)$ with width $0.1$ and height $0.14$. When creating the geometry the table is excluded since we are not concerned with how the heat spreads through it. We also exclude the flame as it is assumed to retain the same temperature throughout. The code below creates the geometry using the coordinates above.
+
+
+\subsection{The Hyperbolic PDE}\label{ss:eqn}
+\paragraph{} To model our problem we use the hyperbolic PDE 
+\begin{equation*}
+	\frac{\partial u}{\partial t} \ - \ \nabla \cdot \left( c\nabla u\right) \ = \ 0.
+\end{equation*}
+
+The constant $c$, represents the conductivity of   
+\section{Graphics}
+
+Graphics files in PDF or JPEG format can be pasted in using the code
+below (remove the \%\ signs and edit according to your needs).
+
+\begin{center}
+%\includegraphics[width=100mm]{MIGSAA-logo-5}
+%  \includegraphics{myfile.jpg}
+%
+%  \includegraphics[width=175mm]{myfile.pdf}    if you need to change the size
+%
+%  \includegraphics[width=150mm, height=100mm]{myfile.pdf}  if you need to change the size in both directions
+%
+%  \includegraphics[angle=90]{myfile.pdf}     if you need to rotate the image
+%
+%  \includegraphics[angle=270,width=120mm]{myfile.pdf}  if you need to rotate and change size
+%
+\end{center}
+
+\section{Conclusions}\label{s:conc}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     Bibliography
+%
+%     Use an easy-to-remember tag for each entry - eg \bibitem{How97} for an article/book by Howie in 1997
+%     To cite this publication in your text, write \cite{How97}.  To include more details such as
+%     page, Chapter, Theorem numbers, use the form \cite[Theorem 6.3, page 42]{How97}.
+%
+
+\end{document}
