@@ -2,22 +2,22 @@
 clear
 close all
 
-numberOfPDE = 1;
-pdem = createpde(numberOfPDE);
-
 %create geometry
 P1 = [2;6;4.1;4.5;4.5;3.6;3.6;4.1;0.65;0.65;0.9;0.9;0.87;0.87]; %pot
 C1 = [3;4;1;5;5;1;0;0;2.5;2.5]; %campervan
-C1 = [C1;zeros(length(P1)-length(C1),1)];
+C1 = [C1;zeros(length(P1)-length(C1),1)]; %make vector right length
 T1 = [3;4;4;5;5;4;0;0;0.5;0.5];
 T1 = [T1;zeros(length(P1)-length(T1),1)]; %table
 H1 = [4;4.3;0.575;0.05;0.07;0]; %heat source
 H1 = [H1;zeros(length(P1)-length(H1),1)];
 
 gd=[P1,C1,T1,H1]; %includes goemetries
-sf='(C1+P1)-(T1+H1)'; %doesn't include table of heat source
+sf='(C1+P1)-(T1+H1)'; %doesn't include table or heat source
 ns = char('P1','C1','T1','H1')';
 g = decsg(gd,sf,ns); %creates geometry
+
+numberOfPDE = 1;
+pdem = createpde(numberOfPDE); %declare PDE
 geometryFromEdges(pdem,g);
 figure %figure of geometry
 pdegplot(pdem,'edgeLabels','on','subdomainLabels','on') 
@@ -32,13 +32,14 @@ msh = generateMesh(pdem,'Hgrad',1.05);
 figure
 pdemesh(pdem);
 axis equal 
-nframes = 200;
+
+nframes = 200; %# time steps in soln
 tlist = linspace(0,0.1,nframes);
-pdem.SolverOptions.ReportStatistics ='on'; 
-result = solvepde(pdem,tlist);
+pdem.SolverOptions.ReportStatistics ='on'; %check soln is good
+result = solvepde(pdem,tlist); %solves PDE
 u1 = result.NodalSolution;
 
-%points to follow temp change at - in pot, handle, standing pos for person
+%points to follow temp change - in pot, handle, standing pos for person
 xx = [4.25,3.7,3.25];
 yy = [0.7,0.88,1.25];
 uintrp = interpolateSolution(result,xx,yy,1:length(tlist));
